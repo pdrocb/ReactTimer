@@ -13,7 +13,9 @@ describe('Clock', () => {
 
   describe('render', () => {
     it('should render clock to output', () => {
+      // Render the component Inside:(Pass jsx code that gonna propertly render exactly what we want)
       var clock = TestUtils.renderIntoDocument(<Clock totalSeconds={62}/>);
+      // Get the jQuery element
       var $el = $(ReactDOM.findDOMNode(clock));
       var actualText = $el.find('.clock-text').text();
 
