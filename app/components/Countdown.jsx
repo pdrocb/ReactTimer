@@ -15,6 +15,7 @@ var Countdown = React.createClass({
     if(this.state.countdownStatus !== prevState.countdownStatus) {
       switch (this.state.countdownStatus) {
         case 'started':
+          console.log('Starting timer');
           this.startTimer();
           break;
         case 'stopped':
@@ -64,6 +65,7 @@ var Countdown = React.createClass({
 
     return (
       <div>
+        <h1 className="page-title">Countdown App</h1>
         <Clock totalSeconds={count}/>
         {renderControlArea()}
       </div>
