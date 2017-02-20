@@ -11,6 +11,7 @@ var Countdown = React.createClass({
     }
   },
   componentDidUpdate: function (prevProps, prevState) {
+    // gets fired when the application is updated
     if(this.state.countdownStatus !== prevState.countdownStatus) {
       switch (this.state.countdownStatus) {
         case 'started':
@@ -25,12 +26,21 @@ var Countdown = React.createClass({
       }
     }
   },
+  componentWillUnmount: function () {
+    //This method automatically gets fired by react right before the componets is remove from the DOM
+    clearInterval(this.timer);
+    this.timer = undefined;
+  },
   startTimer: function () {
     this.timer = setInterval(() => {
       var newCount = this.state.count - 1;
       this.setState({
         count: newCount >= 0 ? newCount : 0
       });
+
+      if(newCount === 0) {
+        this.setState({countdownStatus: 'stopped'});
+      }
     }, 1000);
   },
   handleSetCountdown: function (seconds) {
